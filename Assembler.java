@@ -5,13 +5,13 @@ import java.util.HashMap;
 public class Assembler
 {
     private static Parser parser = null;
-    private static SymbolTable symboltable = null;
+    private static SymbolTable symbolTable = null;
     
         public static void main(String []args) //main method that runs the program
         {
             //Grab data from args and initialize the parser
             parser = new Parser(args[0]);
-            symboltable = new SymbolTable(); 
+            symbolTable = new SymbolTable(); 
         }
 
     // First Pass Creates the Symbol Table 
