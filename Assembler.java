@@ -4,12 +4,13 @@ import java.util.HashMap;
 
 public class Assembler
 {
-    private Parser  parser = null;
-
-    public static void main(String []args) //main method that runs the program
-    {
-        parser = new Parser(); 
-    }
+    private static Parser parser = null;
+    
+        public static void main(String []args) //main method that runs the program
+        {
+            //Grab data from args and initialize the parser
+            parser = new Parser(args[0]);
+        }
 
     // First Pass Creates the Symbol Table 
     private void FirstPass() { 
