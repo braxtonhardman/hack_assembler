@@ -29,7 +29,7 @@ public class Parser
 
     public void advance(){ //advance to the next instuction
         boolean instructionSet = false;
-        while(!instructionSet){ //loop file until we have instruction
+        while(!instructionSet && file.hasNext()){ //loop file until we have instruction
             currentInstruction = file.next();
 
             //Check for white space and comments
@@ -40,7 +40,7 @@ public class Parser
                 //Check for what instructions we have
                 if(currentInstruction.charAt(0) == '@'){ //a
                     currentSymbol = currentInstruction;
-                    instructionType = 'a';=
+                    instructionType = 'a';
                 }
                 else if(currentInstruction.charAt(0) == '(') //label instruction
                 {
