@@ -40,7 +40,7 @@ public class Parser
                 //Check for what instructions we have
                 if(currentInstruction.charAt(0) == '@'){ //a
                     currentSymbol = currentInstruction;
-                    instructionType = 'a';=
+                    instructionType = 'a';
                 }
                 else if(currentInstruction.charAt(0) == '(') //label instruction
                 {

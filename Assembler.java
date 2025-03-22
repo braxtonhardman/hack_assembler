@@ -4,8 +4,14 @@ import java.util.HashMap;
 
 public class Assembler
 {
+    public enum TYPE { 
+        A_COMMAND,
+        C_COMMAND,
+        L_COMMAND 
+    }
+
     private Parser  parser = null;
-    private HashMap<String, Integer> symbolTable = null; 
+
     public static void main(String []args) //main method that runs the program
     {
         parser = new Parser(); 
@@ -13,7 +19,10 @@ public class Assembler
 
     // First Pass Creates the Symbol Table 
     private void FirstPass() { 
-
+        //Grab all the symbols. 
+        while(parser.hasNextLine()) { 
+            line = parser.next(); 
+        }
     }
 
     // Second Pass does the translation
@@ -21,11 +30,7 @@ public class Assembler
 
     }
 
-    // Initialize the symbol table with the predefined values 
-    private void InitSymbolTable() { 
-        symbolTable = new HashMap<>();
+    private void typeCommand(String line) { 
 
     }
-
-
 }

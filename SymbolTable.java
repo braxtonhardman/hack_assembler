@@ -7,24 +7,19 @@ public class SymbolTable {
 
 
 	private HashMap<String, Integer> symbolTable;
-
+    // All valid characters of 
 	private String ALL_VALID_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_.$:";
-
+    // These are valid inital characters
 	private String INITIAL_VALID_CHARS = "ABCDEFGHIKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_.$:";
-
 	
-
-	
-
 	//DESCRIPTION: initializes hashmap with predefined symbols
-
 	//PRECONDITION: follows symbols/values from book/appendix
-
 	//POSTCONDITION: all hashmap values have valid address integer
 
 	public SymbolTable() {
-
 		symbolTable = new HashMap<>();
+
+        // All the initial values that are predefined symbols. 
 		this.symbolTable.put("SP", Integer.valueOf(0));
 		this.symbolTable.put("LCL", Integer.valueOf(1));
 		this.symbolTable.put("ARG", Integer.valueOf(2));
@@ -51,17 +46,21 @@ public class SymbolTable {
 	}
 
 	
+    // Add value to the symbol table being the symbol and the address which would be the line number
 	public boolean addEntry(String symbol, int address) {
 
+        // If the name is not valid return false 
 		if(!this.validName(symbol)) {
 			return false;
 		}
 
-		
-
+	
+        // If the symbol does not already exist in the table 
 		if(!this.contains(symbol)) {
 
+            // Make sure address is valid and not in the screen 
 			if(address < 24576 && address >= 0) {
+
 
 				if(this.symbolTable.putIfAbsent(symbol, address) != null) {
 					return false;
@@ -89,11 +88,13 @@ public class SymbolTable {
 	}
 
 
+    // Check if the symbol is a valid name 
 	public boolean validName(String symbol) {
 		boolean valid = true;
 
 		if(valid==true) {
 
+            // Compare the first letter of the symbol to all the intial valid characters 
 			for(int j = 0; j < INITIAL_VALID_CHARS.length(); j++) {
 				String currentChar = Character.toString(this.INITIAL_VALID_CHARS.charAt(j));
 				String firstChar = Character.toString(symbol.charAt(0));
@@ -108,6 +109,7 @@ public class SymbolTable {
 		}
 
 		if(valid==true) {
+            // Check if the rest of the characters in the symbol are valid
 			for(int k = 0; k < symbol.length(); k++) {
 				String currentChar = Character.toString(symbol.charAt(k));
 				if(this.ALL_VALID_CHARS.contains(currentChar)) {
