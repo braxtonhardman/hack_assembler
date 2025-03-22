@@ -4,12 +4,6 @@ import java.util.HashMap;
 
 public class Assembler
 {
-    public enum TYPE { 
-        A_COMMAND,
-        C_COMMAND,
-        L_COMMAND 
-    }
-
     private Parser  parser = null;
 
     public static void main(String []args) //main method that runs the program
