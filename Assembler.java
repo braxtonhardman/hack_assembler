@@ -12,6 +12,7 @@ public class Assembler
             //Grab data from args and initialize the parser
             parser = new Parser(args[0]);
             symbolTable = new SymbolTable(); 
+            FirstPass();
         }
 
     // First Pass Creates the Symbol Table 
