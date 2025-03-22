@@ -35,10 +35,12 @@ public class Parser
             //Check for white space and comments
             if(!currentInstruction.contains("//")){ //we a non-comment instruction
 
+                instructionSet = true; //breaks the loop
+
                 //Check for what instructions we have
                 if(currentInstruction.charAt(0) == '@'){ //a
                     currentSymbol = currentInstruction;
-                    instructionType = 'a';
+                    instructionType = 'a';=
                 }
                 else if(currentInstruction.charAt(0) == '(') //label instruction
                 {
