@@ -11,10 +11,6 @@ public class SymbolTable {
 	private String ALL_VALID_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_.$:";
     // These are valid inital characters
 	private String INITIAL_VALID_CHARS = "ABCDEFGHIKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_.$:";
-	
-	//DESCRIPTION: initializes hashmap with predefined symbols
-	//PRECONDITION: follows symbols/values from book/appendix
-	//POSTCONDITION: all hashmap values have valid address integer
 
 	public SymbolTable() {
 		symbolTable = new HashMap<>();

@@ -4,27 +4,36 @@ import java.util.HashMap;
 
 public class Assembler
 {
-    private Parser  parser = null;
+    private static Parser  parser = null;
+    private static SymbolTable symbolTable = null; 
 
     public static void main(String []args) //main method that runs the program
     {
-        parser = new Parser(); 
+        parser = new Parser(""); 
+        symbolTable = new SymbolTable(); 
+        FirstPass(); 
     }
 
     // First Pass Creates the Symbol Table 
-    private void FirstPass() { 
-        //Grab all the symbols. 
-        while(parser.hasNextLine()) { 
-            line = parser.next(); 
+    private static void FirstPass() { 
+        int lineNumber = 1; 
+        while(parser.hasMoreLines()) { 
+            parser.advance();
+            char instructionType = parser.getInstructionType();
+            if(instructionType == 'l') { 
+                symbolTable.addEntry(parser.getSymbol(), lineNumber);
+            } else if(instructionType == 'a') { 
+                symbolTable.addEntry(parser.getSymbol(), lineNumber);
+            } else { 
+                lineNumber++;
+                return;
+            }
+            lineNumber++; 
         }
     }
 
     // Second Pass does the translation
     private void SecondPass() { 
-
-    }
-
-    private void typeCommand(String line) { 
 
     }
 }
