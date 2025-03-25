@@ -6,13 +6,16 @@ public class Assembler
 {
     private static Parser parser = null;
     private static SymbolTable symbolTable = null;
+    private static String fileName;
     
         public static void main(String []args) //main method that runs the program
         {
             //Grab data from args and initialize the parser
-            parser = new Parser(args[0]);
+            fileName = args[0];
+            parser = new Parser(fileName);
             symbolTable = new SymbolTable(); 
             FirstPass();
+            SecondPass();
         }
 
     // First Pass Creates the Symbol Table 
@@ -34,8 +37,18 @@ public class Assembler
     }
 
     // Second Pass does the translation
-    private void SecondPass() { 
+    private static void SecondPass() { 
 
+        //Create a new parser
+         parser = new Parser(fileName);
+        int lineNumber = 0;
+        while(parser.hasMoreLines()){
+            parser.advance();
+            char instructionType = parser.getInstructionType();
+
+            //Now do different things based on an A and C instruction
+            
+        }
     }
 
 	private static String decimalToBinary(int number) {
