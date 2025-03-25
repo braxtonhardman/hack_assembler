@@ -66,6 +66,7 @@ public class Assembler
                 
                 
                 String decimal = "111" + comp + dest + jump;
+                
                 try { 
                     fileWriter.write(decimal + "\n");
                 } catch(IOException e) { 

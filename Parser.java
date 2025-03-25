@@ -31,6 +31,7 @@ public class Parser
         boolean instructionSet = false;
         while(!instructionSet && file.hasNext()){ //loop file until we have instruction
             currentInstruction = file.nextLine();
+            currentInstruction = currentInstruction.trim();
             //Check for white space and comments
             try{
                 if(!currentInstruction.contains("//")){ //we a non-comment instruction
