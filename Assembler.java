@@ -45,6 +45,7 @@ public class Assembler
 
     // Second Pass does the translation
     private static void SecondPass() { 
+        int varAddress = 16;
         //Create a new parser
         parser = new Parser(fileName);
         while(parser.hasMoreLines()){
@@ -71,17 +72,13 @@ public class Assembler
                 if(isAllNums(parser.getSymbol())) { 
                     binary = decimalToBinary(Integer.parseInt(parser.getSymbol()));
                 } else { 
-                    System.out.print(parser.getSymbol()+"\t");
+                    //System.out.print(parser.getSymbol()+"\t");
                     if(!symbolTable.contains(parser.getSymbol())) { 
-                        symbolTable.addEntry(parser.getSymbol(), parser.getLineNumber());
-                        binary = decimalToBinary(parser.getLineNumber());
-                        System.out.println(symbolTable.getAddress(parser.getSymbol())+"\t"+binary);
+                        symbolTable.addEntry(parser.getSymbol(), varAddress);
+                        binary = decimalToBinary(varAddress);
                     } else { 
                         binary = decimalToBinary(symbolTable.getAddress(parser.getSymbol()));
-                        System.out.println(symbolTable.getAddress(parser.getSymbol())+"\t"+binary);
                     }
-                    
-                    
                 }
                 try { 
                     fileWriter.write(binary + "\n");
