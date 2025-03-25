@@ -38,7 +38,7 @@ public class Assembler
             if(instructionType == 'l') { 
 
                 symbolTable.addEntry(parser.getSymbol(), parser.getLineNumber());
-                System.out.println(parser.getSymbol()+" "+parser.getLineNumber());
+                //System.out.println(parser.getSymbol()+" "+parser.getLineNumber());
             } 
         }
     }
@@ -75,6 +75,7 @@ public class Assembler
                     //System.out.print(parser.getSymbol()+"\t");
                     if(!symbolTable.contains(parser.getSymbol())) { 
                         symbolTable.addEntry(parser.getSymbol(), varAddress);
+                        System.out.println("adding entry " + parser.getSymbol());
                         binary = decimalToBinary(varAddress);
                         varAddress++; 
                     } else { 

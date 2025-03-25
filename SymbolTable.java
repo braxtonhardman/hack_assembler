@@ -55,19 +55,14 @@ public class SymbolTable {
 		if(!this.contains(symbol)) {
 
             // Make sure address is valid and not in the screen 
-			if(address < 24576 && address >= 0) {
 
-
-				if(this.symbolTable.putIfAbsent(symbol, address) != null) {
-					return false;
-				} else {
-					this.symbolTable.put(symbol, address);
-					return true;
-				}
-
-			} else {
+			if(this.symbolTable.putIfAbsent(symbol, address) != null) {
 				return false;
+			} else {
+				this.symbolTable.put(symbol, address);
+				return true;
 			}
+
 
 		} else {
 			return false;

@@ -39,7 +39,7 @@ public class Parser
             try{
                 if(!currentInstruction.contains("//")){ //we a non-comment instruction
                     
-                    System.out.println(currentInstruction+" "+currentLineNumber);
+                    //System.out.println(currentInstruction+" "+currentLineNumber);
                     instructionSet = true; //breaks the loop
                     //Check for what instructions we have
                     if(currentInstruction.charAt(0) == '@'){ //a
