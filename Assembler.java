@@ -39,7 +39,6 @@ public class Assembler
             if(instructionType == 'l') { 
 
                 symbolTable.addEntry(parser.getSymbol(), lineNumber);
-
             } 
             else{
                 lineNumber++;
@@ -68,6 +67,7 @@ public class Assembler
                     e.printStackTrace();
                     System.exit(0);
                 }
+                lineNumber++; 
                 
             } else if(instructionType == 'a') { 
                 // Check if the symbol exists in the table 
@@ -76,11 +76,14 @@ public class Assembler
                 if(isAllNums(parser.getSymbol())) { 
                     binary = decimalToBinary(Integer.parseInt(parser.getSymbol()));
                 } else { 
+                    System.out.print(parser.getSymbol()+"\t");
                     if(symbolTable.contains(parser.getSymbol())) { 
                         symbolTable.addEntry(parser.getSymbol(), lineNumber);
                         binary = decimalToBinary(lineNumber);
+                        System.out.println(symbolTable.getAddress(parser.getSymbol())+"\t"+binary);
                     } else { 
                         binary = decimalToBinary(symbolTable.getAddress(parser.getSymbol()));
+                        System.out.println(symbolTable.getAddress(parser.getSymbol())+"\t"+binary);
                     }
                     
                     
