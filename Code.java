@@ -5,16 +5,19 @@ import java.util.HashMap;
 
 public class Code {
 
+	// Hashmap for comp. jump, and dest consisting of key: string and value: string 
 	private HashMap<String, String> compCodes;
 	private HashMap<String, String> jumpCodes;
 	private HashMap<String, String> destCodes;
 
+	// Constructory initalizes all the tables 
 	public Code() {
 		this.putCompCodes();
 		this.putJumpCodes();
 		this.putDestCodes();
 	}
 
+	// Put all the predefined comp field codes 
 	private void putCompCodes() {
 		this.compCodes = new HashMap<>();
 		this.compCodes.put("0", "0101010");
@@ -47,6 +50,7 @@ public class Code {
 		this.compCodes.put("D|M", "1010101");
 	}
 
+	// Put all the predefined jump codes 
 	private void putJumpCodes() {
 		this.jumpCodes = new HashMap<String, String>();
 		this.jumpCodes.put("NULL", "000");
@@ -59,6 +63,7 @@ public class Code {
 		this.jumpCodes.put("JMP", "111");
 	}
 
+	// Put all the predefined dest codes 
 	private void putDestCodes() {
 		this.destCodes = new HashMap<String, String>();
 		this.destCodes.put("NULL", "000");
@@ -72,14 +77,17 @@ public class Code {
 
 	}
 
+	// Get given the key the corresponding comp code 
 	public String comp(String digits) {
 		return this.compCodes.get(digits);
 	}
 
+	// Get given the key the corresponding dest code 
 	public String dest(String digits) {
 		return this.destCodes.get(digits);
 	}
 
+	// Get given the key the corresponding jump code 
 	public String jump(String digits) {
 		return this.jumpCodes.get(digits);
 	}
