@@ -17,7 +17,7 @@ public class Assembler
             //Grab data from args and initialize the parser
             fileName = args[0];
             try { 
-                fileWriter = new FileWriter(fileName + ".hack");
+                fileWriter = new FileWriter(fileName.replace(".asm", ".hack"));
             } catch (Exception e) { 
                 e.printStackTrace();
                 System.exit(0);
