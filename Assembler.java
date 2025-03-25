@@ -58,6 +58,7 @@ public class Assembler
                 
                 String decimal = "111" + comp + dest + jump;
 
+               //Now try to write our c-instruction to the file.
                 try { 
                     fileWriter.write(decimal + "\n");
                 } catch(IOException e) { 
@@ -65,7 +66,7 @@ public class Assembler
                     System.exit(0);
                 }
                 
-            } else if(instructionType == 'a') { 
+            } else if(instructionType == 'a') { //a-instruction
                 // Check if the symbol exists in the table 
                 // if it does not exist than it is a number
                 String binary;
@@ -73,6 +74,8 @@ public class Assembler
                     binary = decimalToBinary(Integer.parseInt(parser.getSymbol()));
                 } else { 
                     //System.out.print(parser.getSymbol()+"\t");
+
+                    //look and see if the symbol is already in the symbol, if not add it and then convert it to binary either way.
                     if(!symbolTable.contains(parser.getSymbol())) { 
                         symbolTable.addEntry(parser.getSymbol(), varAddress);
                         System.out.println("adding entry " + parser.getSymbol());
@@ -82,6 +85,8 @@ public class Assembler
                         binary = decimalToBinary(symbolTable.getAddress(parser.getSymbol()));
                     }
                 }
+
+                //Try/Catch to write out the a-instruction to the file
                 try { 
                     fileWriter.write(binary + "\n");
                 } catch(IOException e) { 
@@ -99,7 +104,7 @@ public class Assembler
         }
     }
 
-	private static String decimalToBinary(int number) {
+	private static String decimalToBinary(int number) { //function to convert the decimal number to a 15-bit binary 
 
         int num = number;
         StringBuilder sb = new StringBuilder();
@@ -119,7 +124,7 @@ public class Assembler
         return sb.toString(); 
     }
 
-    private static boolean isAllNums(String symbol) {
+    private static boolean isAllNums(String symbol) { //this function just attempts to see if it's a number or not by using hte Integer wrapper class and parsing the data
 		try {
 			Integer.parseInt(symbol);
 			return true;
