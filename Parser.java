@@ -63,25 +63,31 @@ public class Parser
 
     //Now build all the methods to return the destination, comp, and jump
     public String getDest(){
-        
-        if(instructionType == 'c'){ //only do calculations if we have a c-instruction
-            if(currentInstruction.contains("=")){ //only if we have an equals will we have a destination
-                return currentInstruction.substring(0, currentInstruction.indexOf("=")); //return everything before the equals sign
+         if(instructionType == 'c'){ 
+            if(currentInstruction.contains("=")){
+               return currentInstruction.substring(0, currentInstruction.indexOf("="));
             }
-            else if(!currentInstruction.contains("=") && currentInstruction.contains(";")){ //this is for the case that we have a jump 
-                return currentInstruction.substring(0, currentInstruction.indexOf(";")); //return everything before the equals sign
-            }
-        }
-        return null;
+         }
+         return null;
     }
+    
     public String getComp(){
-        if(instructionType == 'c'){
-            if(currentInstruction.contains("=")){ //only operate if there is an equal sign
+    if(instructionType == 'c'){
+        if(currentInstruction.contains("=")){
+            if(currentInstruction.contains(";")){
+                return currentInstruction.substring(currentInstruction.indexOf("=")+1, currentInstruction.indexOf(";"));
+            } else {
                 return currentInstruction.substring(currentInstruction.indexOf("=")+1);
             }
+        } else if(currentInstruction.contains(";")){
+            return currentInstruction.substring(0, currentInstruction.indexOf(";"));
+        } else {
+            return currentInstruction; // Just comp with no dest or jump
         }
-        return null;
     }
+    return null;
+    }
+    
     public String getjump(){
         if(instructionType == 'c'){
             if(!currentInstruction.contains("=") && currentInstruction.contains(";")){ //only have a jump when we don't have an equal sign
