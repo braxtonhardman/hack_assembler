@@ -76,8 +76,14 @@ public class Assembler
                 if(isAllNums(parser.getSymbol())) { 
                     binary = decimalToBinary(Integer.parseInt(parser.getSymbol()));
                 } else { 
-                    symbolTable.addEntry(parser.getSymbol(), lineNumber);
-                    binary = decimalToBinary(lineNumber);
+                    if(symbolTable.contains(parser.getSymbol())) { 
+                        symbolTable.addEntry(parser.getSymbol(), lineNumber);
+                        binary = decimalToBinary(lineNumber);
+                    } else { 
+                        binary = decimalToBinary(symbolTable.getAddress(parser.getSymbol()));
+                    }
+                    
+                    
                 }
                 try { 
                     fileWriter.write(binary + "\n");
@@ -85,7 +91,7 @@ public class Assembler
                     e.printStackTrace();
                     System.exit(0);
                 }
-                
+            
                 lineNumber++; 
             }
 
