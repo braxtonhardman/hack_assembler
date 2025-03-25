@@ -16,6 +16,7 @@ public class Assembler
             fileName = args[0];
             parser = new Parser(fileName);
             symbolTable = new SymbolTable(); 
+            code = new Code(); 
             FirstPass();
             SecondPass();
         }
@@ -23,13 +24,17 @@ public class Assembler
     // First Pass Creates the Symbol Table 
     private static void FirstPass() { 
         int lineNumber = 0; 
+        int varCounter = 16;
         while(parser.hasMoreLines()) { 
             parser.advance();
             char instructionType = parser.getInstructionType();
             if(instructionType == 'l') { 
                 symbolTable.addEntry(parser.getSymbol(), lineNumber);
             } else if(instructionType == 'a') { 
-                symbolTable.addEntry(parser.getSymbol(), lineNumber);
+                
+                symbolTable.addEntry(parser.getSymbol(), varCounter);
+                varCounter++; 
+                
             } else { 
                 lineNumber++;
                 return;
@@ -47,7 +52,6 @@ public class Assembler
         while(parser.hasMoreLines()){
             parser.advance();
             char instructionType = parser.getInstructionType();
-            System.out.println(parser.ge)
             if(instructionType == 'c') { 
                 // If the command is a jump command split on the ; else split on the = 
                 if(parser.getjump() != null) { 
@@ -60,8 +64,19 @@ public class Assembler
                     System.out.println(dest + " " + comp);
                 }
                 
-                
             } else if(instructionType == 'a') { 
+                // Check if the symbol exists in the table 
+                // if it does not exist than it is a number
+                if(symbolTable.contains(parser.getSymbol())) { 
+                    //Symbol is in the table look up the symbol and conver to binary 
+                   String binary = decimalToBinary(symbolTable.getAddress(parser.getSymbol()));
+                   System.out.println(binary);
+                } else { 
+
+                    // Convert decimal numbers of line locations to binary 
+                    String binary = decimalToBinary(Integer.parseInt(parser.getSymbol()));
+                    System.out.println(binary);
+                }
 
             } else { 
 
