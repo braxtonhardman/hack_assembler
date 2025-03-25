@@ -32,17 +32,14 @@ public class Assembler
 
     // First Pass Creates the Symbol Table 
     private static void FirstPass() { 
-        int lineNumber = 0; 
         while(parser.hasMoreLines()) { 
             parser.advance();
             char instructionType = parser.getInstructionType();
             if(instructionType == 'l') { 
 
-                symbolTable.addEntry(parser.getSymbol(), lineNumber);
+                symbolTable.addEntry(parser.getSymbol(), parser.getLineNumber());
+                System.out.println(parser.getSymbol()+" "+parser.getLineNumber());
             } 
-            else{
-                lineNumber++;
-            }
         }
     }
 
@@ -50,7 +47,6 @@ public class Assembler
     private static void SecondPass() { 
         //Create a new parser
         parser = new Parser(fileName);
-        int lineNumber = 0;
         while(parser.hasMoreLines()){
             parser.advance();
             char instructionType = parser.getInstructionType();
@@ -67,7 +63,6 @@ public class Assembler
                     e.printStackTrace();
                     System.exit(0);
                 }
-                lineNumber++; 
                 
             } else if(instructionType == 'a') { 
                 // Check if the symbol exists in the table 
@@ -78,8 +73,8 @@ public class Assembler
                 } else { 
                     System.out.print(parser.getSymbol()+"\t");
                     if(!symbolTable.contains(parser.getSymbol())) { 
-                        symbolTable.addEntry(parser.getSymbol(), lineNumber);
-                        binary = decimalToBinary(lineNumber);
+                        symbolTable.addEntry(parser.getSymbol(), parser.getLineNumber());
+                        binary = decimalToBinary(parser.getLineNumber());
                         System.out.println(symbolTable.getAddress(parser.getSymbol())+"\t"+binary);
                     } else { 
                         binary = decimalToBinary(symbolTable.getAddress(parser.getSymbol()));
@@ -94,8 +89,6 @@ public class Assembler
                     e.printStackTrace();
                     System.exit(0);
                 }
-            
-                lineNumber++; 
             }
 
         }

@@ -22,10 +22,13 @@ public class Parser
         }catch(FileNotFoundException fnfe){
             System.out.println("File NOT FOUND!");
         }
+        currentLineNumber = 0;
     }
 
     //Create the methods
     public boolean hasMoreLines(){return file.hasNext();} //has more lines
+
+    int currentLineNumber = 0;
 
     public void advance(){ //advance to the next instuction
         boolean instructionSet = false;
@@ -35,12 +38,15 @@ public class Parser
             //Check for white space and comments
             try{
                 if(!currentInstruction.contains("//")){ //we a non-comment instruction
-
+                    
+                    System.out.println(currentInstruction+" "+currentLineNumber);
                     instructionSet = true; //breaks the loop
                     //Check for what instructions we have
                     if(currentInstruction.charAt(0) == '@'){ //a
                         currentSymbol = currentInstruction.substring(1);
                         instructionType = 'a';
+                        currentLineNumber++;
+
                     }
                     else if(currentInstruction.charAt(0) == '(') //label instruction
                     {
@@ -51,6 +57,7 @@ public class Parser
                     {
                         instructionType = 'c';
                         currentSymbol = null;
+                        currentLineNumber++;
                     }
                 }
             }
@@ -96,5 +103,9 @@ public class Parser
             }
         }
         return null;
+    }
+
+    public int getLineNumber(){
+        return currentLineNumber;
     }
 }
