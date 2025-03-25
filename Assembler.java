@@ -1,6 +1,7 @@
 //Java Assembler Program
 //By Ethan Emerson, Braxton Hardman, Christian Sapp
 import java.lang.StringBuilder;
+import java.io.FileWriter;
 
 public class Assembler
 {
@@ -46,13 +47,19 @@ public class Assembler
         while(parser.hasMoreLines()){
             parser.advance();
             char instructionType = parser.getInstructionType();
+            System.out.println(parser.ge)
             if(instructionType == 'c') { 
-                String comp = parser.getComp();
-                // If the command is a C command 
-                if(comp.contains(";")) { 
-
+                // If the command is a jump command split on the ; else split on the = 
+                if(parser.getjump() != null) { 
+                    String dest = parser.getDest(); 
+                    String jump = parser.getjump(); 
+                    System.out.println(dest + " " + jump);
+                } else { 
+                    String dest = parser.getDest(); 
+                    String comp = parser.getComp(); 
+                    System.out.println(dest + " " + comp);
                 }
-                String[] computations = comp.split("=");
+                
                 
             } else if(instructionType == 'a') { 
 
