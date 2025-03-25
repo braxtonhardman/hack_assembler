@@ -76,6 +76,7 @@ public class Assembler
                     if(!symbolTable.contains(parser.getSymbol())) { 
                         symbolTable.addEntry(parser.getSymbol(), varAddress);
                         binary = decimalToBinary(varAddress);
+                        varAddress++; 
                     } else { 
                         binary = decimalToBinary(symbolTable.getAddress(parser.getSymbol()));
                     }
