@@ -40,10 +40,10 @@ public class Assembler
 
                 symbolTable.addEntry(parser.getSymbol(), lineNumber);
 
-            } else { 
+            } 
+            else{
                 lineNumber++;
             }
-            lineNumber++;
         }
     }
 
