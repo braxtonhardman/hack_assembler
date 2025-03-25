@@ -75,15 +75,15 @@ public class Parser
     public String getComp(){
         if(instructionType == 'c'){
             if(currentInstruction.contains("=")){ //only operate if there is an equal sign
-                return currentInstruction.substring(currentInstruction.indexOf("=")+1, currentInstruction.indexOf(";"));
+                return currentInstruction.substring(currentInstruction.indexOf("=")+1);
             }
         }
         return null;
     }
     public String getjump(){
         if(instructionType == 'c'){
-            if(!currentInstruction.contains("=")){ //only have a jump when we don't have an equal sign
-                return currentInstruction.substring(currentInstruction.indexOf(";"));
+            if(!currentInstruction.contains("=") && currentInstruction.contains(";")){ //only have a jump when we don't have an equal sign
+                return currentInstruction.substring(currentInstruction.indexOf(";")+1);
             }
         }
         return null;
