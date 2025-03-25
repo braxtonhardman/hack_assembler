@@ -66,6 +66,9 @@ public class Parser
             if(currentInstruction.contains("=")){ //only if we have an equals will we have a destination
                 return currentInstruction.substring(0, currentInstruction.indexOf("=")); //return everything before the equals sign
             }
+            else if(!currentInstruction.contains("=") && currentInstruction.contains(";")){ //this is for the case that we have a jump 
+                return currentInstruction.substring(0, currentInstruction.indexOf(";")); //return everything before the equals sign
+            }
         }
         return null;
     }
