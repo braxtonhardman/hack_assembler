@@ -77,7 +77,7 @@ public class Assembler
                     binary = decimalToBinary(Integer.parseInt(parser.getSymbol()));
                 } else { 
                     System.out.print(parser.getSymbol()+"\t");
-                    if(symbolTable.contains(parser.getSymbol())) { 
+                    if(!symbolTable.contains(parser.getSymbol())) { 
                         symbolTable.addEntry(parser.getSymbol(), lineNumber);
                         binary = decimalToBinary(lineNumber);
                         System.out.println(symbolTable.getAddress(parser.getSymbol())+"\t"+binary);
