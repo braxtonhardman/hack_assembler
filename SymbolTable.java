@@ -44,17 +44,13 @@ public class SymbolTable {
 	
     // Add value to the symbol table being the symbol and the address which would be the line number
 	public boolean addEntry(String symbol, int address) {
-
         // If the name is not valid return false 
 		if(!this.validName(symbol)) {
 			return false;
 		}
 
-	
         // If the symbol does not already exist in the table 
 		if(!this.contains(symbol)) {
-
-            // Make sure address is valid and not in the screen 
 
 			if(this.symbolTable.putIfAbsent(symbol, address) != null) {
 				return false;
