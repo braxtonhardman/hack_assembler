@@ -7,6 +7,7 @@ public class Assembler
     private static Parser parser = null;
     private static SymbolTable symbolTable = null;
     private static String fileName;
+    private static Code code = null; 
     
         public static void main(String []args) //main method that runs the program
         {
@@ -40,11 +41,24 @@ public class Assembler
     private static void SecondPass() { 
 
         //Create a new parser
-         parser = new Parser(fileName);
+        parser = new Parser(fileName);
         int lineNumber = 0;
         while(parser.hasMoreLines()){
             parser.advance();
             char instructionType = parser.getInstructionType();
+            if(instructionType == 'c') { 
+                String comp = parser.getComp();
+                // If the command is a C command 
+                if(comp.contains(";")) { 
+
+                }
+                String[] computations = comp.split("=");
+                
+            } else if(instructionType == 'a') { 
+
+            } else { 
+
+            }
 
             //Now do different things based on an A and C instruction
             
